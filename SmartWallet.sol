@@ -24,6 +24,10 @@ contract SmartWallet {
             _owners[msg.sender] == true,
             "SmartWallet: Only an owner can change percentage"
         );
+        require(
+            newPercentage >= 0 && newPercentage <= 100,
+            "Percentage must be between 0 and 100"
+        );
         _percentage = newPercentage;
     }
 
@@ -86,5 +90,9 @@ contract SmartWallet {
     //Exercice 5
     function gain() public view returns (uint256) {
         return _gain;
+    }
+
+    function percentage() public view returns (uint256) {
+        return _percentage;
     }
 }
